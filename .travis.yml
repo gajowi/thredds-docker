@@ -15,3 +15,4 @@ script:
   - docker exec thredds grep -ir severe logs/ || echo no severe catalina log entries
   - docker exec thredds grep -ir severe content/thredds/logs/ || echo no severe thredds log entries
   - docker exec thredds grep -ir warn content/thredds/logs/ || echo no warn thredds log entries
+  - true
