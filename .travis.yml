@@ -12,8 +12,8 @@ before_install:
 
 script:
   - ./.travis/test.sh
-  - docker exec thredds grep -ir severe logs/ || echo no severe catalina log entries
-  - docker exec thredds grep -ir severe content/thredds/logs/ || echo no severe thredds log entries
-  - docker exec thredds grep -ir warn content/thredds/logs/ || echo no warn thredds log entries
-  - docker logs thredds 2>/dev/null | grep -i warn || echo no warn docker log stdout entries
-  - docker logs thredds 2>&1 >/dev/null | grep -i warn || echo no warn docker log stderr entries
+  - docker exec thredds grep -ir severe logs/ && exit 1 || echo no severe catalina log entries
+  - docker exec thredds grep -ir severe content/thredds/logs/ && exit 1 || echo no severe thredds log entries
+  - docker exec thredds grep -ir warn content/thredds/logs/ && exit 1 || echo no warn thredds log entries
+  - docker logs thredds 2>/dev/null | grep -i warn && exit 1 || echo no warn docker log stdout entries
+  - docker logs thredds 2>&1 >/dev/null | grep -i warn && exit 1 || echo no warn docker log stderr entries
